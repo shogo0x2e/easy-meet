@@ -44,3 +44,4 @@ yarn-error.log*
 
 # for prod db
 fly.toml
+.env-prod
