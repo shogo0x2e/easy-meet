@@ -14,16 +14,37 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+model Event {
+  id            Int     @id @default(autoincrement())
+  title         String
+  description   String
+  startsAt      DateTime
+  endsAt        DateTime
+  locationId    Int
+  categoryId    Int
+  userId        String
 
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
+  location      Location @relation(fields: [locationId], references: [id])
+  category      Category @relation(fields: [categoryId], references: [id])
+  user          User     @relation(fields: [userId], references: [id])
+}
 
-    @@index([name])
+model Location {
+  id          Int     @id @default(autoincrement())
+  name        String
+  address     String
+  prefecture  String
+  city        String
+  postalCode  String
+
+  events      Event[]
+}
+
+model Category {
+  id          Int     @id @default(autoincrement())
+  name        String
+  
+  events      Event[]
 }
 
 // Necessary for Next auth
@@ -55,20 +76,14 @@ model Session {
 }
 
 model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    posts         Post[]
+  id            String    @id @default(cuid())
+  name          String
+  email         String    @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+
+  events        Event[]
 }
 
-model VerificationToken {
-    identifier String
-    token      String   @unique
-    expires    DateTime
-
-    @@unique([identifier, token])
-}
