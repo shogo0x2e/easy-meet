@@ -11,7 +11,7 @@ import { FaRegCalendarAlt } from "react-icons/fa";
 
 export default function DashboardPage() {
   return (
-    <div className="flex h-screen w-full flex-col">
+    <div className="flex w-full flex-col">
       <main className="flex-1 overflow-y-auto">
         <div className="grid gap-4 p-4">
           <div className="grid gap-4">
@@ -27,13 +27,15 @@ export default function DashboardPage() {
                 <span className="sr-only">Search</span>
               </Button>
             </div>
-            <div className="gap-4 rounded-lg bg-white p-4 shadow-sm dark:bg-gray-950">
-              <div className="flex items-start pb-4">
-                <FaMapMarkerAlt size={20} className="mr-2" />
-                <div className="font-medium">View map</div>
+            <Link href={"/map"}>
+              <div className="gap-4 rounded-lg bg-white p-4 shadow-sm dark:bg-gray-950">
+                <div className="flex items-start pb-4">
+                  <FaMapMarkerAlt size={20} className="mr-2" />
+                  <div className="font-medium">View map</div>
+                </div>
+                <div className="h-[200px] bg-gray-200"></div>
               </div>
-              <div className="h-[200px] bg-gray-200"></div>
-            </div>
+            </Link>
             <div className="gap-4 rounded-lg bg-white p-4 shadow-sm dark:bg-gray-950">
               <div className="flex items-start pb-4">
                 <FaRegCalendarAlt size={20} className="mr-2" />
@@ -44,40 +46,6 @@ export default function DashboardPage() {
           </div>
         </div>
       </main>
-      <nav className="flex items-center justify-around border-t border-gray-200 bg-white px-4 py-2 dark:border-gray-800 dark:bg-gray-950">
-        <Link
-          href="#"
-          className="flex flex-col items-center gap-1 text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-          prefetch={false}
-        >
-          <HomeIcon className="h-6 w-6" />
-          <span className="text-xs">Home</span>
-        </Link>
-        <Link
-          href="#"
-          className="flex flex-col items-center gap-1 text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-          prefetch={false}
-        >
-          <SearchIcon className="h-6 w-6" />
-          <span className="text-xs">Search</span>
-        </Link>
-        <Link
-          href="#"
-          className="flex flex-col items-center gap-1 text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-          prefetch={false}
-        >
-          <CompassIcon className="h-6 w-6" />
-          <span className="text-xs">Explore</span>
-        </Link>
-        <Link
-          href="#"
-          className="flex flex-col items-center gap-1 text-gray-500 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-          prefetch={false}
-        >
-          <UserIcon className="h-6 w-6" />
-          <span className="text-xs">Profile</span>
-        </Link>
-      </nav>
     </div>
   );
 }

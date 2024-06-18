@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <TRPCReactProvider>
           <main className="flex min-h-screen flex-col items-center justify-center bg-white">
-            <div className="w-full max-w-[800px]">{children}</div>
+            <div className="w-screen max-w-[800px]">{children}</div>
           </main>
         </TRPCReactProvider>
       </body>
